@@ -1,0 +1,44 @@
+<header>
+
+   	    	 <!-- Authors Tommy Lamb & Craig Duffy -->
+
+	<div class="header-content">
+
+		<div id="search">
+			<input type="text" name="search" class="searchbox"
+				placeholder="Not Implemented"/>
+		</div>
+
+
+		<div class="logo">
+			<img src="images/logoTwo.png" alt="Duffy &amp; Lamb Paints Logo" />
+		</div>
+
+
+		<div id="userbar">
+			<span><a onclick = "getBasket()"; href="" >Basket</a> |
+			<a href="Login.jsp">Login/Register</a></span>
+		</div>
+
+		<script>
+		function getBasket(){
+			var productName ="";
+			var productAmount = "";
+
+			if (typeof (localStorage.getItem("product")) != 'undefined' && typeof (localStorage.getItem("amount")) != 'undefined') {
+				if (localStorage.getItem("product") != null && localStorage.getItem("amount") != null) {
+					product = (JSON.parse(localStorage.getItem("product")));
+					amount = (JSON.parse(localStorage.getItem("amount")));
+				}
+
+				for (var i = 0; i < product.length; i++){
+				 productName = productName +"&ProductName=" + product[i];
+				 productAmount= productAmount +"&Amount=" + amount[i];
+					}
+				}
+				window.open("Basket.jsp" + "?BasketSize="+ product.length + productName + productAmount);
+			}
+		</script>
+
+	</div>
+</header>
