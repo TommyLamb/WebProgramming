@@ -52,7 +52,7 @@ if (isset($_POST['Username']) && isset($_POST['Password'])){
 					<?php include 'include/navbar.xhtml'; ?>
 					
 					<h1>You have logged in successfully</h1>
-					
+					<a href="Logout.php">Logout here</a>
 				</main>
 				
 			<?php #include 'include/footer.jsp';?>
