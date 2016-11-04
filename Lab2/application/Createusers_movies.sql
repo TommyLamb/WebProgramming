@@ -6,7 +6,7 @@ movieID int not null,
 primary key (uID, movieID),
 foreign key (uID) references my_users(uID),
 foreign key (movieID) references my_movies(movieID)
-)
+)ENGINE=INNODB;
 
 insert into users_movies VALUES (1,3);
 insert into users_movies VALUES (1,6);
