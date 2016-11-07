@@ -15,7 +15,7 @@ TNumber varchar(24)
 
 create table Address(
 AddressID int primary key AUTO_INCREMENT,
-UID varchar(128) not null,
+UID int not null,
 Line1 varchar(64) not null,
 Line2 varchar(64),
 Line3 varchar(64),
@@ -29,7 +29,7 @@ foreign key (UID) references Customer(UID)
 
 create table Transaction(
 TransactionTimestamp DATETIME(6) primary key,
-UID varchar(128),
+UID int,
 AddressID int not null,
 DeliveryStatus int not null,
 NoProducts int,
@@ -49,7 +49,7 @@ primary key (TransactionTimestamp, ProductName)
 
 create table Favourites(
 ProductName varchar(64) not null,
-UID varchar(128) not null,
+UID int not null,
 foreign key (ProductName) references ProductList(ProductName),
 foreign key (UID) references Customer(UID),
 primary key (ProductName, UID)
