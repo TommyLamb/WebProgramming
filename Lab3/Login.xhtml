@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+   <head>
+     <meta charset="utf-8" />
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <title> Duffy  Lamb [InsertProduct] </title>
+     <link rel="stylesheet" type="text/css" href="css/main.css"/>
+	 <link rel="stylesheet" type="text/css" href="css/login.css"/>
+   </head>
+
+   	<body>
+		<header>
+			<div class="header-content">
+
+				<div id="search">
+					<input type="text" name="search" class="searchbox" placeholder="Search..."></input>
+				</div>
+
+				<div id="logo">
+					<img src="images/logoTwo.png" alt="Duffy &amp; Lamb Paints Logo"/>
+				</div>
+
+				<div id="userbar">
+					<span><a href="Basket.xhtml">Basket[ICON]</a> | <a href="Login.xhtml">Login/Register</a></span>
+				</div>
+
+			</div>
+		</header>
+
+		<div id="content-wrap">
+
+			<main>
+
+				<nav>
+
+					<div class="nav-element">
+						<a href="http://www.macs.hw.ac.uk/cs/online/wp/index.xhtml">Home</a>
+					</div>
+
+					<div class="nav-element">
+						<a href="https://drive.google.com/drive/folders/0B-WU6EvDJJLERGZNSk84ZmJSajg">Products</a>
+					</div>
+
+					<div class="nav-element">
+						<a href="About.xhtml">About</a>
+					</div>
+
+				</nav>
+
+				<div id="login-wrap">
+
+					<form action="MyAccount.php" method="post" autocomplete="on">
+
+					<div>Username: </div>
+					<input type="text" name="Username" placeholder="e.g. JohnShepard" size="30" maxlength="64" autofocus="autofocus" required="required" pattern="[^;&quot;'&gt;&lt;\r\t\f\v]+" title="Do not include: ' ; &quot; &gt; &lt;"/> <!-- Database has limit of 64 chars -->
+
+					<div>Password: </div>
+					<input type="password" name="Password" size="30" maxlength="64" required="required" pattern="[^;&quot;'&gt;&lt;\r\t\f\v]+" title="Do not include: ' ; &quot; &gt; &lt;"/> <!-- The dollar and caret are assumed in HTML5 regex -->
+					<br/>
+					<input type="submit" value="Login"/>
+					</form>
+
+				</div>
+
+
+
+
+
+
+				</main>
+
+				<footer>
+
+
+				<span class="left">Legal Junk</span>
+				<span class="middle">Legal Junk</span>
+				<span class="right">Legal Junk</span>
+
+			</footer>
+
+			</div>
+
+	</body>
+</html>
