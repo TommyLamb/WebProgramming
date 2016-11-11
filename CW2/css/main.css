@@ -1,0 +1,128 @@
+* {
+	box-sizing: border-box;
+	/* forces width and height values to include margin and padding */
+	font-family: baskerville
+}
+
+@font-face { /*Font-Face introduced in CSS3*/
+	font-family: baskerville;
+	src: url(fonts/baskvl.woff);
+}
+
+@font-face {
+	font-family: baskervilleBold;
+	src: url(fonts/baskvlBold.woff);
+}
+
+html, body {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+
+header {
+	background: rgb(46, 46, 46);
+	color: #FFFFFF;
+	width: 100vw;
+	min-height: 60px;
+}
+
+.header-content { /*Sets up a flex container for the header*/
+	min-height: 60px;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header-content img {
+	max-height: 50px;
+}
+
+main .logo {
+	display: none;
+	/*This is overridden in the homapage.css for proper display there*/
+}
+
+@media screen and (max-width: 780px) {
+	.header-content .logo {
+		display: none;
+	}
+	main .logo {
+		display: initial;
+	}
+}
+
+#search {
+	margin-right: 2%;
+}
+
+#userbar {
+	white-space: nowrap;
+	margin-left: 2%; /*Keep a respectable separation on resizing*/
+}
+
+#userbar a {
+	color: rgb(255, 255, 255);
+}
+
+.header-content, #content-wrap {
+	max-width: 950px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 3%;
+}
+
+nav {
+	width: 100%;
+	padding: 15px 0px;
+	margin: 2% 0;
+	border-style: solid none;
+	border-width: 1px;
+	border-color: rgb(46, 46, 46);
+	text-align: center;
+}
+
+.nav-element {
+	margin: 0px 2%;
+	white-space: nowrap;
+	display: inline-block;
+	text-align: center;
+}
+
+.nav-element a:visited, .nav-element a {
+	color: rgb(46, 46, 46);
+	font-size: 1.5em;
+	font-family: baskervilleBold;
+}
+
+footer {
+	text-align: center;
+	border-style: solid none none;
+	border-color: rgb(46, 46, 46);
+	border-width: 1px;
+	margin: 2% 0 0;
+	padding: 10px;
+}
+
+footer a, footer a:visited {
+	color: rgb(46, 46, 46);
+}
+
+.button-image:hover {
+	filter: saturate(140%);
+	transform: scale(0.97, 0.97);
+	cursor: pointer;
+}
+
+.left {
+	float: left;
+}
+
+.middle {
+	text-align: center;
+}
+
+.right {
+	float: right;
+}
