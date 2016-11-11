@@ -25,11 +25,16 @@ if (isset($_POST['Username']) && isset($_POST['Password'])){
 		header('Location: http://www2.macs.hw.ac.uk/~til1/SecondYear/Semester1/WebProgramming/LabWork/Lab2/Login?Login=False');
 		die();
 	}
-} else {
+} elseif (empty($_SESSION['loggedIn']) || $_SESSION['loggedIn']==False) {
 	$_SESSION['loggedIn'] = False;
 	header('Location: Login?Login=False');
 	die();
-}
+} elseif ($_SESSION['loggedIn']) {
+	//Do nothing. Just don't die.
+	} else {
+			header('Location: Login?Login=False');
+	die();
+		}
 
 				?>
 
@@ -53,6 +58,7 @@ if (isset($_POST['Username']) && isset($_POST['Password'])){
 					
 					<a href="MyMovies.php">My Movies</a>
 					
+					<a href="Logout.php">Logout here</a>
 				</main>
 				
 			<?php #include 'include/footer.jsp';?>
