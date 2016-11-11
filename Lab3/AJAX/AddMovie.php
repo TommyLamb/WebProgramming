@@ -1,6 +1,6 @@
-<?php
+<?php session_start();
 
-if (empty($_POST['MovieTitle']) || empty($_POST['uID'])){
+if (empty($_POST['MovieTitle']) || empty($_SESSION['uID'])){
 	http_response_code(400);
 	die();
 }
@@ -10,7 +10,7 @@ $db = new PDO($dsn, 'til1', 'abctil1354');
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$insert = $db->prepare('Insert Into users_movies VALUES (:uID,:movieID');
+$insert = $db->prepare('Insert Into users_movies VALUES (:uID,:movieID)');
 $verify = $db->prepare('Select movieID from my_movies where movieTitle = :movieTitle');
 
 $verify->bindParam(':movieTitle', $_POST['MovieTitle']);
@@ -20,12 +20,14 @@ if (!$verify->execute()){
 }
 $movieID = $verify->fetchColumn(0);
 
-$insert->bindParam(':uID', $_POST['uID']);
+$insert->bindParam(':uID', $_SESSION['uID']);
 $insert->bindParam(':movieID', $movieID);
 if (!$insert->execute()){
 	http_response_code(500);
 	die();
 }
+
+
 
 ?>
 	

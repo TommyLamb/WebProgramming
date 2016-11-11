@@ -64,7 +64,7 @@ $statement = $db->prepare('Select movieTitle, movieGenre, movieRating from my_mo
 						}
 					?>
 					
-					<button type="button" onclick="location.href='AddMoviesForm.php'"/>
+					<button type="button" onclick="location.href='AddMoviesForm.php'">Add a movie</button>
 					
 				</main>
 				
