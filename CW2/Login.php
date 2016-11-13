@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
  <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
    <head>
@@ -25,15 +24,15 @@
 						 echo '<div id="error">Incorrect details supplied</div>';
 						 }
 						?>
-					<div>Username: </div>
-					<input type="text" name="Username" size="30" maxlength="128" autofocus="autofocus" required="required" pattern="[^;&quot;'&gt;&lt;\r\t\f\v]+" title="Do not include: ' ; &quot; &gt; &lt;"/>
+					<div>Email Address: </div>
+					<input type="email" name="Username" size="30" maxlength="128" autofocus="autofocus" required="required" pattern="[^;&quot;'&gt;&lt;\r\t\f\v]+" title="Do not include: ' ; &quot; &gt; &lt;"/>
 
 					<div>Password: </div>
 					<input type="password" name="Password" size="30" required="required" pattern="[^;&quot;'&gt;&lt;\r\t\f\v]+" title="Do not include: ' ; &quot; &gt; &lt;"/> <!-- The dollar and caret are assumed in HTML5 regex -->
 					<br/>
 					<input type="submit" value="Login"/>
 					</form>
-
+					<a href="CreateAccount.php">Create an account</a>
 				</div>
 
 

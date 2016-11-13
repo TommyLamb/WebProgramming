@@ -10,7 +10,7 @@ Username varchar(128) UNIQUE not null,
 Password varchar(255),
 FName varchar(64) not null,
 SName varchar(64) not null,
-TNumber varchar(24)
+TNumber varchar(24) --varchar required to maintain leading zeros
 )ENGINE=INNODB;
 
 create table Address(
