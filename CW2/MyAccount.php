@@ -46,7 +46,7 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
 
 	<body>
 	
-		<?php include 'include/header.xhtml';?>
+		<?php include 'include/header.php';?>
 		
 			<div id="content-wrap">
 		

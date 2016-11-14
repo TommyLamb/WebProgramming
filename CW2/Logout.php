@@ -11,7 +11,7 @@ session_destroy();
 
 	<body>
 	
-		<?php include 'include/header.xhtml';?>
+		<?php include 'include/header.php';?>
 		
 			<div id="content-wrap">
 		

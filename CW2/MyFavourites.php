@@ -27,7 +27,7 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 
 	<body>
 	
-		<?php include 'include/header.xhtml';?>
+		<?php include 'include/header.php';?>
 		
 			<div id="content-wrap">
 		
@@ -43,7 +43,7 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 					<?php
 					if ($statement->rowCount()) {
 							foreach ($statement as $row){
-							echo '<div class="product" onclick="location.href=\'http://www2.macs.hw.ac.uk:8080/til1/Year2Semester1/WebProgramming/CW1/ProductPage.jsp?ProductName=' . $row[0] . '\'">';
+							echo '<div class="product" onclick="location.href=\'ProductPage.php?ProductName=' . $row[0] . '\'">';
 							echo '<img src="images/products/' . $row[0] . '.png" alt="' . $row[1] . '"/>';
 							echo '<div>'.$row[1].'</div>';
 							echo '</div>';
@@ -52,9 +52,6 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 					?>
 					
 					</div>
-					
-					<button type="button" onclick="location.href='AddMoviesForm.php'">Add a movie</button>
-					
 				</main>
 				
 			<?php #include 'include/footer.jsp';?>

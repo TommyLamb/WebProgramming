@@ -1,3 +1,9 @@
+<?php session_start();
+if ($_SESSION['loggedIn'] && !empty($_SESSION['uID'])){
+	header('Location: MyAccount.php');
+	#No die required as no sensitive info here
+}
+?>
 <!DOCTYPE html>
  <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
    <head>
@@ -7,7 +13,7 @@
 
    	<body>
 		
-		<?php include 'include/header.xhtml';?>
+		<?php include 'include/header.php';?>
 
 		<div id="content-wrap">
 
@@ -67,8 +73,6 @@ if (this.readyState == 4 && this.status == 200){
 		console.log(formstring);
 		xhttp.send(formstring);
 		
-} else {
-	return false;
 }
 			}
 		});
