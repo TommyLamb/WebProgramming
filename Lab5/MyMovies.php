@@ -40,6 +40,7 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 					<?php 
 					if ($querySuccess) {
 						echo '<table><tr><th>Title</th><th>Genre</th><th>Rating</th><th>Poster</th><th>Action</th></tr>';
+
 						foreach ( $statement as $row ) {
 							
 							echo '<tr>';
@@ -56,6 +57,7 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 							echo '<button type="button" name="poster" onclick="showPoster(\''.$row['movieTitle'].'\')" data-title="'.$row['movieTitle'].'">View</button>';
 							echo '<td>';
 							echo '<button type="button" name="remove" onclick="deleteMovie(\''.$row['movieTitle'].'\')" data-title="'.$row['movieTitle'].'">Remove</button>';
+
 							echo '</td>';
 							echo '</tr>';
 						}
