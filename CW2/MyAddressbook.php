@@ -1,17 +1,11 @@
 <?php
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
 if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 	$_SESSION['loggedIn'] = false;
 	header('Location: Login.php');
 	die();
-} else if ($_SESSION['loggedIn']) {
-	$dsn = 'mysql:dbname=til1;host=mysql-server-1.macs.hw.ac.uk;charset=utf8';
-	$db = new PDO($dsn, 'til1', 'abctil1354');
-	$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}?>
+}
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
@@ -31,26 +25,9 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 					<?php include 'include/navbar.xhtml'; ?>
 					
 					<a href="MyAccount.php">Back to My Account</a>
-					
-					<?php $statement=$db->prepare('Select * from Address WHERE UID = :uid');
-					 $statement->bindParam(":uid", $_SESSION['uID']);
-					if ($statement->execute()){
-						if ($statement->rowCount()){
-							echo '<select onchange="changeAddress()">';
-								foreach ($statement as $row){
-									echo '<option label="'.$row['Line1'].'" value="'.$row['AddressID'].'"/>';
-								}
-							echo '</select>';
-							echo '<button type="button" onclick="addAddressForm()">Add address</button>';
-						} else {
-							echo 'No Address Found!';
-							echo '<button type="button" onclick="addAddressForm()">Add address</button>';
-						}
-					} else {
-						http_response_code(500);
-						die();
-					}
-					?>
+
+					<button type="button" name="AddAddress" onclick="newAddress()">Add address</button>
+
 					
 								<div id="form-wrap">
 
@@ -69,18 +46,10 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 																				<option value="United Kingdom">United Kingdom</option>
 																				<option value="United States">United States</option>
 																				<option value="Germany">Germany</option>
-
-
-
-
-
-
-
-
-
 				</select>	</td>		</tr>
 				</table>
 
+					<button type="button" onclick="deleteAddress()" name="Delete">Remove</button>
 					<button type="button" onclick="sendFormData()" name="Next"> Next </button>
 
 				</form>
@@ -97,18 +66,96 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 		
 		<script>
 
-		function sendFormData(name){
+		var update = true;
+		
+		$( document ).ready( function () {
+			getAddressList();
+		});
+
+function getAddressList() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200){
+			$('select[name="SelectAddress"]').remove();
+			$('button[name="AddAddress"]').before(this.responseText);
+			updateForm();
+} else if (this.readyState==4 && (this.status==500||this.status==400)){
+	window.alert("An error occurred processing your request");
+}
+};
+	xhttp.open("POST", "AJAX/Address/GetAddressSelectorAJAX.php", true);
+	xhttp.send();
+}
+		
+		function updateForm(){
+			update = true;
+			$('button[name="Next"]').html('Update address');
+			var selection = $('select option:selected').val();
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200){
-					window.alert(this.responseText);
+					var address = JSON.parse(this.responseText);
+					$('input[name="AddressLine1"]').val(address['Line1']);
+					$('input[name="AddressLine2"]').val(address['Line2']);
+					$('input[name="AddressLine3"]').val(address['Line3']);
+					$('input[name="AddressLine4"]').val(address['Line4']);
+					$('input[name="AddressCity"]').val(address['City']);
+					$('input[name="AddressPostCode"]').val(address['Postcode']);
+					$('input[name="AddressCounty"]').val(address['County']);
+					$('input[name="AddressCountry"]').val(address['Country']);
+					$('input').removeAttr('placeholder');
 		} else if (this.readyState==4 && (this.status==500||this.status==400)){
-					window.alert("500");
+			window.alert("An error occurred processing your request");
 		}
 		};
-			xhttp.open("POST", "AJAX/AddAddressAJAX.php", true);
+			xhttp.open("POST", "AJAX/Address/GetAddressAJAX.php", true);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhttp.send($("form").serialize());
+			xhttp.send("AddressID="+selection);
+			
+		}
+			
+		function newAddress() {
+			update=false;
+			$('button[name="Next"]').html('Add address');
+			$('input[name="AddressLine1"]').attr('placeholder',"Captain's Cabin");
+			$('input[name="AddressLine2"]').attr('placeholder',"Deck 1");
+			$('input[name="AddressLine3"]').attr('placeholder',"SSV Normandy SR-2");
+			$('input[name="AddressLine4"]').attr('placeholder',"Bay D24");
+			$('input[name="AddressCity"]').attr('placeholder',"Citadel");
+			$('input[name="AddressPostCode"]').attr('placeholder',"EH14 4AS");
+			$('input[name="AddressCounty"]').attr('placeholder',"Inner Citadel Space");
+			$('input').val("");
+		}
+		
+		function sendFormData(){
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200){
+					getAddressList();
+		} else if (this.readyState==4 && (this.status==500||this.status==400)){
+					window.alert("An error occurred processing your request");
+		}
+		};
+			xhttp.open("POST", "AJAX/Address/AddAddressAJAX.php", true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send("Update="+update+"&AddressID="+$('select option:selected').val()+"&"+$("form").serialize());
+			
+		}
+
+		function deleteAddress(){
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200){
+				getAddressList();
+		} else if (this.readyState==4 && (this.status==500||this.status==400)){
+			window.alert("An error occurred processing your request");
+		}
+		};
+			xhttp.open("POST", "AJAX/Address/DeleteAddressAJAX.php", true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			if (window.confirm('This will remove this address from your account. This cannot be undone. Proceed?')){
+			xhttp.send("AddressID="+$('select option:selected').val());
+			}
 			
 		}
 		</script>
