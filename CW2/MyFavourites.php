@@ -43,9 +43,10 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 					<?php
 					if ($statement->rowCount()) {
 							foreach ($statement as $row){
-							echo '<div class="product" onclick="location.href=\'ProductPage.php?ProductName=' . $row[0] . '\'">';
+							echo '<div class="product" data-name="'.$row[0].'" onclick="location.href=\'ProductPage.php?ProductName=' . $row[0] . '\'">';
 							echo '<img src="images/products/' . $row[0] . '.png" alt="' . $row[1] . '"/>';
 							echo '<div>'.$row[1].'</div>';
+							echo '<div> <button type="button" onclick="removeFavourite(\''.$row[0].'\')"> Remove </button> </div>';
 							echo '</div>';
 							}
 					}
@@ -54,8 +55,28 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 					</div>
 				</main>
 				
-			<?php #include 'include/footer.jsp';?>
+			<?php include 'include/footer.php';?>
 		
 			</div>
 		</body>
+		
+		<script>
+
+		function removeFavourite(name){
+			event.stopPropagation();
+			
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200){
+					$('.product[data-name="'+name+'"]').css('display','none');
+		} else if (this.readyState==4 && (this.status==500||this.status==400)){
+					$('.product[data-name="'+name+'"]').replaceWith("Error");
+		}
+		};
+			xhttp.open("POST", "AJAX/RemoveFavouriteAJAX.php", true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send("ProductName="+name);
+			
+		}
+		</script>
 	</html>

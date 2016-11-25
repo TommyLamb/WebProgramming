@@ -1,0 +1,29 @@
+#form-wrap {
+	width: 70%;
+	min-height: 300px;;
+	margin: auto;
+	margin-top: 7%;
+	/*margin-bottom: 15%;*/
+	border-radius: 5px;
+	box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
+	padding: 5%;
+	min-width: 265px;
+}
+
+#form-table {
+	margin: auto;
+}
+
+#form-table, tr, td {
+	border: 0;
+}
+
+#form-table td {
+	vertical-align: center;
+	padding: 3px 5px;
+}
+
+td.required::after {
+	content: "*";
+	color: red;
+}

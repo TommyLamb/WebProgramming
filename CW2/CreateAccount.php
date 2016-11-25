@@ -70,7 +70,6 @@ if (this.readyState == 4 && this.status == 200){
 		xhttp.open("POST", "AJAX/CreateAccountAJAX.php", true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		var formstring = $('form').serialize();
-		console.log(formstring);
 		xhttp.send(formstring);
 		
 }
