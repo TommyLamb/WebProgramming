@@ -39,6 +39,8 @@ if ($_SESSION['loggedIn'] && !empty($_SESSION['uID'])){
 					<input type="submit" value="Login"/>
 					</form>
 					<a href="CreateAccount.php">Create an account</a>
+					<br/>
+					<a href="PasswordReset.php">Forgotton password?</a>
 				</div>
 
 
