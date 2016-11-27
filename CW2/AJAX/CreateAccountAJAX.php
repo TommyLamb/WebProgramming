@@ -21,6 +21,7 @@ foreach ( $required as $field ) {
 	}
 }
 
+$values[1] = password_hash($_POST['Password2'], PASSWORD_DEFAULT);
 
 $customerStatement = $db->prepare('insert into Customer (Username,Password,FName,SName, TNumber) VALUES (:Username,:Password,:FName,:SName,:TNumber)');
 $getuID = $db->prepare('Select UID from Customer where Username = :username');

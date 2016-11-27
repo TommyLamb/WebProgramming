@@ -11,12 +11,14 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
 	$password = $_POST['Password'];
 	$username = $_POST['Username'];
 	
-	$statement = $db->prepare('Select * from Customer WHERE username=:username AND password=:password');
+	$statement = $db->prepare('Select * from Customer WHERE Username=:username');
+	$statement->bindParam(':username', $username);
 	
-	$statement->execute(array(':username' => $username, ':password' => $password));
+	$statement->execute();
+	$hash = $statement->fetchColumn(2);
 	
 
-	if ($statement->rowCount() == 1) {
+	if ($statement->rowCount() == 1 && password_verify($password, $hash)) {
 		$_SESSION['loggedIn'] = True;
 		$_SESSION['uID'] = $statement->fetchColumn(0);
 	} else {
