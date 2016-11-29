@@ -35,5 +35,6 @@ if(!mail($result['Username'], "A Test", "Reset Code is $resetCode", 'From: Lamb 
 $_SESSION['resetUID']=$result['UID'];
 $_SESSION['resetTime']=(time()+3600); #Current UNIX timestamp time + 1 hour
 $_SESSION['resetCode']=$resetCode;
+$_SESSION['resetAttempts'] = 0;
 
 ?>
