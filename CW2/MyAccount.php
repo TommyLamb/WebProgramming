@@ -15,12 +15,13 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
 	$statement->bindParam(':username', $username);
 	
 	$statement->execute();
-	$hash = $statement->fetchColumn(2);
+	$result = $statement->fetch(PDO::FETCH_ASSOC);
+	$hash = $result['Password'];
 	
 
 	if ($statement->rowCount() == 1 && password_verify($password, $hash)) {
 		$_SESSION['loggedIn'] = True;
-		$_SESSION['uID'] = $statement->fetchColumn(0);
+		$_SESSION['uID'] = $result['UID'];
 	} else {
 		$_SESSION['loggedIn'] = False;
 		header('Location: Login?Login=False');

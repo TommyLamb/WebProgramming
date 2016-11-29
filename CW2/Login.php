@@ -37,10 +37,12 @@ if ($_SESSION['loggedIn'] && !empty($_SESSION['uID'])){
 					<input type="password" name="Password" size="30" required="required" pattern="[^;&quot;'&gt;&lt;\r\t\f\v]+" title="Do not include: ' ; &quot; &gt; &lt;"/> <!-- The dollar and caret are assumed in HTML5 regex -->
 					<br/>
 					<input type="submit" value="Login"/>
-					</form>
+					<br/>
 					<a href="CreateAccount.php">Create an account</a>
 					<br/>
 					<a href="PasswordReset.php">Forgotton password?</a>
+					</form>
+
 				</div>
 
 

@@ -20,6 +20,10 @@ html, body {
 	height: 100%;
 }
 
+a, a:visited {
+	color: rgb(46, 46, 46);
+}
+
 header {
 	background: rgb(46, 46, 46);
 	color: #FFFFFF;
@@ -103,10 +107,6 @@ footer {
 	border-width: 1px;
 	margin: 2% 0 0;
 	padding: 10px;
-}
-
-footer a, footer a:visited {
-	color: rgb(46, 46, 46);
 }
 
 .button-image:hover {
