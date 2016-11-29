@@ -54,6 +54,7 @@ $statement->execute();
 		</main>
 
 		<?php include 'include/footer.php';?>
+		<?php include 'include/CookieWarning.xhtml';?>
 
 	</div>
 

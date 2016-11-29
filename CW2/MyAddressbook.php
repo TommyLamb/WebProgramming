@@ -82,6 +82,7 @@ function getAddressList() {
 			$('select[name="SelectAddress"]').remove();
 			$('button[name="AddAddress"]').before(this.responseText+"<br/>");
 			updateForm();
+			
 } else if (this.readyState==4 && (this.status==500||this.status==400)){
 	window.alert("An error occurred processing your request");
 }
@@ -93,7 +94,10 @@ function getAddressList() {
 		function updateForm(){
 			update = true;
 			$('button[name="Next"]').html('Update address');
-			$('button[name="Delete"]').removeAttr('disabled');
+			$('button[name="Delete"]').show();
+			if (!$('select[name="SelectAddress"]').length){
+				newAddress();
+			} else {
 			var selection = $('select option:selected').val();
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
@@ -115,13 +119,14 @@ function getAddressList() {
 			xhttp.open("POST", "AJAX/Address/GetAddressAJAX.php", true);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhttp.send("AddressID="+selection);
+			}
 			
 		}
 			
 		function newAddress() {
 			update=false;
 			$('button[name="Next"]').html('Add address');
-			$('button[name="Delete"]').attr('disabled','disabled');
+			$('button[name="Delete"]').hide();
 			$('input[name="AddressLine1"]').attr('placeholder',"Captain's Cabin");
 			$('input[name="AddressLine2"]').attr('placeholder',"Deck 1");
 			$('input[name="AddressLine3"]').attr('placeholder',"SSV Normandy SR-2");

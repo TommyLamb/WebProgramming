@@ -24,6 +24,12 @@ a, a:visited {
 	color: rgb(46, 46, 46);
 }
 
+.button-image:hover {
+	filter: saturate(140%);
+	transform: scale(0.97, 0.97);
+	cursor: pointer;
+}
+
 header {
 	background: rgb(46, 46, 46);
 	color: #FFFFFF;
@@ -71,10 +77,10 @@ main .logo {
 }
 
 .header-content, #content-wrap {
-	max-width: 950px;
+	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
-	padding: 0 3%;
+	padding: 0 10px;
 }
 
 nav {
@@ -101,28 +107,78 @@ nav {
 }
 
 footer {
-	text-align: center;
-	border-style: solid none none;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	align-content: space-between; border-style : solid none none;
 	border-color: rgb(46, 46, 46);
 	border-width: 1px;
 	margin: 2% 0 0;
 	padding: 10px;
+	border-style: solid none none;
 }
 
-.button-image:hover {
-	filter: saturate(140%);
-	transform: scale(0.97, 0.97);
-	cursor: pointer;
+footer div {
+	display: inline-block;
 }
 
-.left {
-	float: left;
+#cookie {
+	max-width:1200px;
+	margin-right:10px;
+	width:100%;
+	border:solid;
+	border-width:3px;
+	border-color:RGB(0,178,0);
+	position:fixed;
+	bottom:12%;
+	text-align:center;
+	background-color: white;
+	
+	animation: bounce 2s;
+	animation-delay:0.5s;
+	animation-iteration-count:1;
+	animation-fill-mode:forwards;
 }
 
-.middle {
-	text-align: center;
-}
-
-.right {
-	float: right;
+@keyframes bounce {
+	
+	0% {
+	animation-timing-function: ease-out;
+	bottom:12%;
+	}
+	
+	14% {
+	animation-timing-function: ease-out;
+	bottom:0;
+	}
+	
+	29% {
+		animation-timing-function: ease-in;
+	bottom:6%;
+	}
+	
+	43% {
+	animation-timing-function: ease-out;
+	bottom:0;
+	}
+	
+	57% {
+		animation-timing-function: ease-in;
+	bottom:3%;
+	}
+	
+	72% {
+	animation-timing-function: ease-out;
+	bottom:0;
+	}
+	
+	86% {
+		animation-timing-function: ease-in;
+	bottom:1%;
+	}
+	
+	100% {
+	animation-timing-function: ease-out;
+	bottom:0;
+	}
 }
