@@ -58,7 +58,10 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
 					
 					<?php include 'include/navbar.xhtml'; ?>
 					
-					<a href="MyFavourites.php">My Favourites</a>
+					<h1>My Account</h1>
+					
+					<a href="MyFavourites.php">Favourites</a>
+					<a href="MyAddressbook.php">Addressbook</a>
 					<a href="Logout.php">Logout here</a>
 				</main>
 				

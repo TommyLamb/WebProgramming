@@ -38,6 +38,8 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 					
 					<a href="MyAccount.php">Back to My Account</a>
 					
+					<h1>Favourites</h1>
+					
 					<div id="product-layout">
 					
 					<?php

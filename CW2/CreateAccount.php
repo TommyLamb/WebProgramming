@@ -26,6 +26,7 @@ if ($_SESSION['loggedIn'] && !empty($_SESSION['uID'])){
 				<div id="login-wrap">
 
 					<form autocomplete="on">
+					<div>To create an account, please fill out the details below.</div>
 					<div>Forename: </div>
 					<input type="text" name="FName" size="30" maxlength="64" autofocus="autofocus" required="required" pattern="[^;&quot;'&gt;&lt;\r\t\f\v]+" title="Do not include: ' ; &quot; &gt; &lt;"/>
 					<div>Surname: </div>

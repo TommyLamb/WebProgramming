@@ -26,6 +26,8 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 					
 					<a href="MyAccount.php">Back to My Account</a>
 
+					<h1>Addressbook</h1>
+
 					<button type="button" name="AddAddress" onclick="newAddress()">Add address</button>
 
 					
@@ -47,10 +49,10 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 																				<option value="United States">United States</option>
 																				<option value="Germany">Germany</option>
 				</select>	</td>		</tr>
+				<tr> <td> </td> <td><button type="button" onclick="deleteAddress()" name="Delete">Remove</button> <button type="button" onclick="sendFormData()" name="Next"> Next </button></td></tr>
 				</table>
 
-					<button type="button" onclick="deleteAddress()" name="Delete">Remove</button>
-					<button type="button" onclick="sendFormData()" name="Next"> Next </button>
+					
 
 				</form>
 
@@ -76,8 +78,9 @@ function getAddressList() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200){
+			$('select[name="SelectAddress"]+br').remove();
 			$('select[name="SelectAddress"]').remove();
-			$('button[name="AddAddress"]').before(this.responseText);
+			$('button[name="AddAddress"]').before(this.responseText+"<br/>");
 			updateForm();
 } else if (this.readyState==4 && (this.status==500||this.status==400)){
 	window.alert("An error occurred processing your request");
@@ -90,6 +93,7 @@ function getAddressList() {
 		function updateForm(){
 			update = true;
 			$('button[name="Next"]').html('Update address');
+			$('button[name="Delete"]').removeAttr('disabled');
 			var selection = $('select option:selected').val();
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
@@ -117,6 +121,7 @@ function getAddressList() {
 		function newAddress() {
 			update=false;
 			$('button[name="Next"]').html('Add address');
+			$('button[name="Delete"]').attr('disabled','disabled');
 			$('input[name="AddressLine1"]').attr('placeholder',"Captain's Cabin");
 			$('input[name="AddressLine2"]').attr('placeholder',"Deck 1");
 			$('input[name="AddressLine3"]').attr('placeholder',"SSV Normandy SR-2");

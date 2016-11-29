@@ -21,7 +21,7 @@ if ($statement->execute()){
 		}
 		echo '</select>';
 	} else {
-		echo 'No Address Found!';
+		echo 'No Addresses Found!';
 	}
 } else {
 	http_response_code(500);

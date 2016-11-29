@@ -49,7 +49,7 @@
 					<div>Confirm password: </div>
 					<input type="password" name="Password2" size="30" required="required" onblur="validatePassword()" pattern="[^;&quot;'&gt;&lt;\r\t\f\v]+" title="Do not include: ' ; &quot; &gt; &lt;"/>
 					<br/>
-					<button type="button" onclick="updatePassword()">Create Account</button>
+					<button type="button" onclick="updatePassword()">Update password</button>
 					</form>
 
 				</div>
@@ -96,7 +96,6 @@
 			}}};
 		xhttp.open("POST", "AJAX/Password/VerifyCodeAJAX.php", true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		window.alert($('input[name="Code"]').val());
 		xhttp.send('Code='+$('input[name="Code"]').val());
 		
 	}
