@@ -1,0 +1,60 @@
+.basket-item {
+	width: 100%;
+	max-height: 200px;
+	display: inline-block;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	border-bottom-style: solid;
+	border-width: 1px;
+	border-color: rgb(46, 46, 46);
+}
+
+.basket-item * {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.item-image img {
+	height: 100px;
+}
+
+.price {
+	float: right;
+	font-family: baskervilleBold;
+	font-size: 1.5em;
+	margin-right: 10px;
+	line-height: 105px;
+}
+
+.item-form {
+	float: right;
+	line-height: 100px; /*Larger line height = lower down the page*/
+}
+
+#form-wrap {
+	width: 70%;
+	min-height: 300px;;
+	margin: auto;
+	margin-top: 2%;
+	border-radius: 5px;
+	box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
+	padding: 5% 10%;
+	min-width: 265px;
+}
+
+#form-table {
+	float:left;
+}
+
+#info {
+	text-align:right;
+}
+
+#form-table, tr, td {
+	border: 0;
+}
+
+#form-table td {
+	vertical-align: center;
+	padding: 3px 5px;
+}

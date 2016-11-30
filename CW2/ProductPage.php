@@ -36,6 +36,7 @@ $favourite->bindParam(':uid', $_SESSION['uID']);
 			<?php include "include/navbar.xhtml"; ?>
 			
 			<?php 
+			if (!empty($_GET['ProductName'])){
 			if ($statement->execute() && $favourite->execute()){
 				$result = $statement->fetch(PDO::FETCH_ASSOC);
 				echo '<div id="product">
@@ -68,6 +69,9 @@ $favourite->bindParam(':uid', $_SESSION['uID']);
 
 
 		</div>';
+			} else {
+				echo 'Error - Product not found';
+			}
 			} else {
 				echo 'Error - Product not found';
 			}
