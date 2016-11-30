@@ -27,7 +27,7 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
 		header('Location: Login?Login=False');
 		die();
 	}
-} elseif (empty($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == False) {
+} elseif (empty($_SESSION['loggedIn']) || $_SESSION['loggedIn'] == False || empty($_SESSION['uID'])) {
 	$_SESSION['loggedIn'] = False;
 	header('Location: Login?Login=False');
 	die();

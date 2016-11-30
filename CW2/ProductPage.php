@@ -76,6 +76,7 @@ $favourite->bindParam(':uid', $_SESSION['uID']);
 			</main>
 			
 			<?php include 'include/footer.php';?>
+			<?php include 'include/cookie.php';?>
 		</div>
 	</body>
 	<?php if ($_SESSION['loggedIn']&& !$favourite->rowCount()){

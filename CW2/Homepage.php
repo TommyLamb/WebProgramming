@@ -29,8 +29,7 @@ $statement->execute();
 		<main>
 
 		<div class="logo">
-			<img src="images/logoOne.png" alt="Duffy &amp; Lamb Paints Logo"
-				width="100%" />
+			<img src="images/logoOne100dp.png" alt="Duffy &amp; Lamb Paints Logo" style="width:100%;" />
 		</div>
 
 		<?php include 'include/navbar.xhtml';?>
@@ -54,7 +53,7 @@ $statement->execute();
 		</main>
 
 		<?php include 'include/footer.php';?>
-		<?php include 'include/CookieWarning.xhtml';?>
+		<?php include 'include/cookie.php';?>
 
 	</div>
 

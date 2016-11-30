@@ -51,6 +51,7 @@ if ($_SESSION['loggedIn'] && !empty($_SESSION['uID'])){
 				</main>
 
 				<?php include 'include/footer.php';?>
+				<?php include 'include/cookie.php';?>
 
 			</div>
 

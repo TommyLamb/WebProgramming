@@ -10,7 +10,7 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <?php include 'include/HTMLhead.xhtml';?>
-			<link rel="stylesheet" type="text/css" href="css/checkout.css"/>
+			<link rel="stylesheet" type="text/css" href="css/address.css"/>
 		</head>
 
 	<body>
@@ -28,28 +28,30 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 
 					<h1>Addressbook</h1>
 
-					<button type="button" name="AddAddress" onclick="newAddress()">Add address</button>
+					<p>To view an adress, just select it form the drop down menu. You can then delete it, or update it by simply typing in the new details over the old ones.<br/>Required fields are shown by a <span class="warning">red asterisk *</span>  </p>
 
 					
-								<div id="form-wrap">
+				<div id="form-wrap">
+	
+				<button type="button" name="AddAddress" onclick="newAddress()">Create a new address</button>
 
-				<form action="Confirmation.jsp" method="post" autocomplete="on">
+				<form autocomplete="on">
 
 				<table id="form-table">
 
-				<tr> <td>Line 1:		</td> 	<td class="required"> 		<input type="text" name="AddressLine1" placeholder="Captain's Cabin" required="required" />			</td> 		</tr>
-				<tr> <td>Line 2:		</td> 	<td> 						<input type="text" name="AddressLine2" placeholder="Deck 1" /> 										</td>		</tr>
-				<tr> <td>Line 3:		</td> 	<td> 						<input type="text" name="AddressLine3" placeholder="SSV Normandy SR-2" />								</td>		</tr>
-				<tr> <td>Line 4:		</td> 	<td>						<input type="text" name="AddressLine4" placeholder="Bay D24" /> 										</td> 		</tr>
-				<tr> <td>City:			</td>	<td class="required"> 		<input type="text" name="AddressCity" placeholder="Citadel" required="required" />						</td>		</tr>
-				<tr> <td>Post Code:		</td>	<td class="required">		<input type="text" name="AddressPostCode" placeholder="EH14 4AS" required="required" />				</td>		</tr>
-				<tr> <td>County:		</td>	<td class="required">		<input type="text" name="AddressCounty" placeholder="Inner Citadel Space" required="required" />		</td>		</tr>
-				<tr> <td>Country:		</td> 	<td class="required">		<select name="AddressCountry">
+					<tr> <td>Line 1:		</td> 	<td class="required"> 		<input type="text" name="AddressLine1" placeholder="Captain's Cabin" required="required" />				</td> 		</tr>
+					<tr> <td>Line 2:		</td> 	<td> 						<input type="text" name="AddressLine2" placeholder="Deck 1" /> 											</td>		</tr>
+					<tr> <td>Line 3:		</td> 	<td> 						<input type="text" name="AddressLine3" placeholder="SSV Normandy SR-2" />								</td>		</tr>
+					<tr> <td>Line 4:		</td> 	<td>						<input type="text" name="AddressLine4" placeholder="Bay D24" /> 										</td> 		</tr>
+					<tr> <td>City:			</td>	<td class="required"> 		<input type="text" name="AddressCity" placeholder="Citadel" required="required" />						</td>		</tr>
+					<tr> <td>Post Code:		</td>	<td class="required">		<input type="text" name="AddressPostCode" placeholder="EH14 4AS" required="required" />					</td>		</tr>
+					<tr> <td>County:		</td>	<td class="required">		<input type="text" name="AddressCounty" placeholder="Inner Citadel Space" required="required" />		</td>		</tr>
+					<tr> <td>Country:		</td> 	<td class="required">		<select name="AddressCountry">
 																				<option value="United Kingdom">United Kingdom</option>
 																				<option value="United States">United States</option>
 																				<option value="Germany">Germany</option>
-				</select>	</td>		</tr>
-				<tr> <td> </td> <td><button type="button" onclick="deleteAddress()" name="Delete">Remove</button> <button type="button" onclick="sendFormData()" name="Next"> Next </button></td></tr>
+						</select>	</td>		</tr>
+					<tr> <td> </td> <td><button type="button" onclick="deleteAddress()" name="Delete">Remove</button> <button type="button" onclick="sendFormData()" name="Next"> Next </button></td></tr>
 				</table>
 
 					
@@ -80,6 +82,8 @@ function getAddressList() {
 		if (this.readyState == 4 && this.status == 200){
 			$('select[name="SelectAddress"]+br').remove();
 			$('select[name="SelectAddress"]').remove();
+			$('#selector+br').remove();
+			$('#selector').remove();
 			$('button[name="AddAddress"]').before(this.responseText+"<br/>");
 			updateForm();
 			
@@ -97,7 +101,9 @@ function getAddressList() {
 			$('button[name="Delete"]').show();
 			if (!$('select[name="SelectAddress"]').length){
 				newAddress();
+				$('button[name="AddAddress"]').hide();
 			} else {
+				$('button[name="AddAddress"]').show();
 			var selection = $('select option:selected').val();
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {

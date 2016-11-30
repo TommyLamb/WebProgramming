@@ -57,6 +57,7 @@
 				</main>
 
 				<?php include 'include/footer.php';?>
+				<?php include 'include/cookie.php';?>
 
 			</div>
 

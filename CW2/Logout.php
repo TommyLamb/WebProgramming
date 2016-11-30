@@ -1,7 +1,4 @@
-<?php session_start();
-session_unset();
-session_destroy();
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 	<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 		<head>
@@ -23,7 +20,14 @@ session_destroy();
 					<h1>You have now logged out.</h1>
 				</main>
 				
-			<?php #include 'include/footer.jsp';?>
+			<?php include 'include/footer.php';?>
+			<?php include 'include/cookie.php';?>
+			<?php 
+			session_unset();
+			session_destroy();
+			#Placed after cookie to prevent the cookie warning automatically showing itself.
+			#Will subsequently show on other pages however, and this one if revisited.
+			?>
 		
 			</div>
 		</body>
