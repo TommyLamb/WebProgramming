@@ -11,7 +11,7 @@ $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-$productquery = $db->prepare('Select (Transaction.TransactionTimestamp),AddressID,DeliveryStatus,Cost,Amount,ProductList.ProductName,DisplayName, HexCode,RGBCode, Price from ProductList, TransactionProductList, Transaction Where Transaction.TransactionTimestamp=:timestamp AND TransactionProductList.TransactionTimestamp = Transaction.TransactionTimestamp AND ProductList.ProductName = TransactionProductList.ProductName AND UID=:uid');
+$productquery = $db->prepare('Select (Transaction.TransactionTimestamp),AddressID,Info,Cost,Amount,ProductList.ProductName,DisplayName, HexCode,RGBCode, Price from ProductList, TransactionProductList, Transaction, DeliveryInfo Where Transaction.TransactionTimestamp=:timestamp AND TransactionProductList.TransactionTimestamp = Transaction.TransactionTimestamp AND Code=DeliveryStatus AND ProductList.ProductName = TransactionProductList.ProductName AND UID=:uid');
 $productquery->bindParam(':uid', $_SESSION['uID']);
 $productquery->bindParam('timestamp', urldecode($_GET['Transaction']));
 $productquery->execute();
@@ -63,7 +63,7 @@ $address=$adressquery->fetch(PDO::FETCH_ASSOC);
 				</table>
 
 				<p id="info">
-					<span>The delivery status is currently: <?php echo $basket[0]['DeliveryStatus'];?></span><br/>
+					<span>Status: <?php echo $basket[0]['Info'];?></span><br/>
 					The total cost for this order was £<?php echo $basket[0]['Cost'];?> <br/>
 					If you have any issues with this order, please <a href="mailto:til1@hw.ac.uk?subject=F28WP%20-%20Coursework%202">contact us</a>.
 				</p>		

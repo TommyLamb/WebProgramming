@@ -11,7 +11,7 @@ $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-$statement = $db->prepare('Select * from Transaction Where UID=:uid');
+$statement = $db->prepare('Select * from Transaction, DeliveryInfo Where UID=:uid AND Code=DeliveryStatus');
 $statement->bindParam(':uid', $_SESSION['uID']);
 $statement->execute();
 ?>
@@ -49,7 +49,7 @@ $statement->execute();
 			 	foreach ($statement as $row){
 			 		echo '<div class="order" onclick="location.href=\'Order?Transaction='.$row['TransactionTimestamp'].'\'">
 							<div class="order-details">'.$row['TransactionTimestamp'].' | Products: '.$row['NoProducts'].' | Cost: £'.$row['Cost'].'</div>
-							 <div class="delivery-details">'.$row['DeliveryStatus'].'</div>
+							 <div class="delivery-details">'.$row['Info'].'</div>
 						</div>';
 			 	}
 			 	

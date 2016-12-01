@@ -60,9 +60,12 @@ if (isset($_POST['Username']) && isset($_POST['Password'])) {
 					
 					<h1>My Account</h1>
 					
-					<a href="MyFavourites.php">Favourites</a>
-					<a href="MyAddressbook.php">Addressbook</a>
-					<a href="Logout.php">Logout here</a>
+					<nav>
+					<div class="nav-element"><a href="MyFavourites.php">Favourites</a></div>
+					<div class="nav-element"><a href="MyAddressbook.php">Addressbook</a></div>
+					<div class="nav-element"><a href="TransactionHistory.php">Orders</a></div>
+					<div class="nav-element"><a href="Logout.php"><span class="highlight">Logout here</span></a></div>
+					</nav>
 				</main>
 				
 			<?php include 'include/footer.php';?>
