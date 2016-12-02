@@ -1,7 +1,4 @@
 <?php session_start(); 
-			
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
 
 $dsn = 'mysql:dbname=til1;host=mysql-server-1.macs.hw.ac.uk;charset=utf8';
 $db = new PDO($dsn, 'til1', 'abctil1354');

@@ -22,7 +22,7 @@
 
 					<form autocomplete="on">
 					<div>Please enter the email address associated with your account below. An email will be sent containg a code you can use to reset your password. This code will expire after 1 hour. <span class="warning">Do not close this page.</span></div>
-					<input type="email" name="Username" size="30" maxlength="128"  required="required" pattern="[^;&quot;'&gt;&lt;\r\t\f\v]+" title="Do not include: ' ; &quot; &gt; &lt;"/>
+					<input type="email" name="Username" size="30" maxlength="128"  required="required" pattern="[^;&quot;'&gt;&lt;\r\t\f\v]+"/>
 					<br/>
 					<button type="button" onclick="requestReset()">Send email</button>
 					</form>
@@ -45,9 +45,9 @@
 					<form autocomplete="off">
 					<div>Please enter your new password below. Once your password has been updated, you will be redirected to your account page.<span class="warning">Do not close this page.</span></div>
 					<div>Password: </div>
-					<input type="password" name="Password1" size="30" required="required" pattern="[^;&quot;'&gt;&lt;\r\t\f\v]+" title="Do not include: ' ; &quot; &gt; &lt;"/> 
+					<input type="password" name="Password1" size="30" required="required" pattern="[^;&quot;'&gt;&lt;\r\t\f\v]+"/> 
 					<div>Confirm password: </div>
-					<input type="password" name="Password2" size="30" required="required" onblur="validatePassword()" pattern="[^;&quot;'&gt;&lt;\r\t\f\v]+" title="Do not include: ' ; &quot; &gt; &lt;"/>
+					<input type="password" name="Password2" size="30" required="required" onblur="validatePassword()" pattern="[^;&quot;'&gt;&lt;\r\t\f\v]+"/>
 					<br/>
 					<button type="button" onclick="updatePassword()">Update password</button>
 					</form>
@@ -66,8 +66,14 @@
 	<script>
 
 	var email ="";
+
+	$( document ).ready( function () {
+		$.validator.messages.pattern = "Do not include ;&quot;&gt;'&lt;";
+		$('form').validate();
+	});
 	
 	function requestReset(){
+		if ($('form').valid()){
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200){
@@ -82,9 +88,11 @@
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		email = $('input[name="Username"]').val();
 		xhttp.send('Username='+ email);
+		}
 	}
 
 	function verifyCode(){
+		if ($('form').valid()){
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status==200){
@@ -98,7 +106,7 @@
 		xhttp.open("POST", "AJAX/Password/VerifyCodeAJAX.php", true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhttp.send('Code='+$('input[name="Code"]').val());
-		
+		}
 	}
 
 	function validatePassword() {
@@ -118,6 +126,7 @@
 	}
 
 	function updatePassword(){
+		if ($('form').valid()){
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200){
@@ -127,6 +136,7 @@
 		xhttp.open("POST", "AJAX/Password/UpdatePasswordAJAX.php", true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhttp.send('Password2='+$('input[name="Password2"]').val());
+		}
 	}
 	</script>
 </html>

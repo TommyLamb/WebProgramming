@@ -25,26 +25,6 @@
 			
 		</div>
 
-		<!-- 		<script> 
-
-// 		function getBasket(){
-// 			var productName ="";
-// 			var productAmount = "";
-
-// 			if (typeof (localStorage.getItem("product")) != 'undefined' && typeof (localStorage.getItem("amount")) != 'undefined') {
-// 				if (localStorage.getItem("product") != null && localStorage.getItem("amount") != null) {
-// 					product = (JSON.parse(localStorage.getItem("product")));
-// 					amount = (JSON.parse(localStorage.getItem("amount")));
-// 				}
-
-// 				for (var i = 0; i < product.length; i++){
-// 				 productName = productName +"&ProductName=" + product[i];
-// 				 productAmount= productAmount +"&Amount=" + amount[i];
-// 					}
-// 				}
-// 				window.open("Basket.jsp" + "?BasketSize="+ product.length + productName + productAmount);
-// 			}
-		</script> -->
-
 	</div>
+	
 </header>

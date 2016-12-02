@@ -1,7 +1,5 @@
 <?php
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
 
 if (empty($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || empty($_SESSION['uID']) || empty($_POST['Update']) || ($_POST['Update'] == "true" && empty($_POST['AddressID']))) {
 	http_response_code(400);

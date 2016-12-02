@@ -7,7 +7,15 @@
 		</head>
 
 	<body>
-	
+		<?php include 'include/cookie.php';?>
+		<?php 
+			session_unset();
+			session_destroy();
+			#Placed after cookie to prevent the cookie warning automatically showing itself.
+			#Will subsequently show on other pages however, and this one if revisited.
+			#Placed beofre the header to properly show "Login" not "MyAccount".
+			#Since cookie is postioned absolutely, it can be included up here fine.
+			?>
 		<?php include 'include/header.php';?>
 		
 			<div id="content-wrap">
@@ -21,13 +29,8 @@
 				</main>
 				
 			<?php include 'include/footer.php';?>
-			<?php include 'include/cookie.php';?>
-			<?php 
-			session_unset();
-			session_destroy();
-			#Placed after cookie to prevent the cookie warning automatically showing itself.
-			#Will subsequently show on other pages however, and this one if revisited.
-			?>
+
+
 		
 			</div>
 		</body>

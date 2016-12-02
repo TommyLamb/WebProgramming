@@ -28,7 +28,7 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 
 					<h1>Addressbook</h1>
 
-					<p>To view an adress, just select it form the drop down menu. You can then delete it, or update it by simply typing in the new details over the old ones.<br/>Required fields are shown by a <span class="warning">red asterisk *</span>  </p>
+					<p>To view an adress, just select it form the drop down menu. You can then delete it, or update it by simply typing in the new details over the old ones.<br/>Required fields are shown by a <span class="warning">red asterisk *</span><br/>Currently we are unable to remove addresses to which we have made a delivery. Our engineers are working to fix this.  </p>
 
 					
 				<div id="form-wrap">
@@ -38,14 +38,13 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 				<form autocomplete="on">
 
 				<table id="form-table">
-
-					<tr> <td>Line 1:		</td> 	<td class="required"> 		<input type="text" name="AddressLine1" placeholder="Captain's Cabin" required="required" />				</td> 		</tr>
-					<tr> <td>Line 2:		</td> 	<td> 						<input type="text" name="AddressLine2" placeholder="Deck 1" /> 											</td>		</tr>
-					<tr> <td>Line 3:		</td> 	<td> 						<input type="text" name="AddressLine3" placeholder="SSV Normandy SR-2" />								</td>		</tr>
-					<tr> <td>Line 4:		</td> 	<td>						<input type="text" name="AddressLine4" placeholder="Bay D24" /> 										</td> 		</tr>
-					<tr> <td>City:			</td>	<td class="required"> 		<input type="text" name="AddressCity" placeholder="Citadel" required="required" />						</td>		</tr>
-					<tr> <td>Post Code:		</td>	<td class="required">		<input type="text" name="AddressPostCode" placeholder="EH14 4AS" required="required" />					</td>		</tr>
-					<tr> <td>County:		</td>	<td class="required">		<input type="text" name="AddressCounty" placeholder="Inner Citadel Space" required="required" />		</td>		</tr>
+					<tr> <td>Line 1:		</td> 	<td class="required"> 		<input type="text" name="AddressLine1" placeholder="Captain's Cabin" required="required" maxlength="64" />				</td> 		</tr>
+					<tr> <td>Line 2:		</td> 	<td> 						<input type="text" name="AddressLine2" placeholder="Deck 1" maxlength="64"/> 											</td>		</tr>
+					<tr> <td>Line 3:		</td> 	<td> 						<input type="text" name="AddressLine3" placeholder="SSV Normandy SR-2" maxlength="64"/>								</td>		</tr>
+					<tr> <td>Line 4:		</td> 	<td>						<input type="text" name="AddressLine4" placeholder="Bay D24" maxlength="64"/> 										</td> 		</tr>
+					<tr> <td>City:			</td>	<td class="required"> 		<input type="text" name="AddressCity" placeholder="Citadel" required="required" maxlength="64" />						</td>		</tr>
+					<tr> <td>Post Code:		</td>	<td class="required">		<input type="text" name="AddressPostCode" placeholder="EH14 4AS" required="required" maxlength="24"/>					</td>		</tr>
+					<tr> <td>County:		</td>	<td class="required">		<input type="text" name="AddressCounty" placeholder="Inner Citadel Space" required="required" maxlength="64" />		</td>		</tr>
 					<tr> <td>Country:		</td> 	<td class="required">		<select name="AddressCountry">
 																				<option value="United Kingdom">United Kingdom</option>
 																				<option value="United States">United States</option>
@@ -53,7 +52,7 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 						</select>	</td>		</tr>
 					<tr> <td> </td> <td><button type="button" onclick="deleteAddress()" name="Delete">Remove</button> <button type="button" onclick="sendFormData()" name="Next"> Next </button></td></tr>
 				</table>
-
+				
 					
 
 				</form>
@@ -74,8 +73,12 @@ if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 		
 		$( document ).ready( function () {
 			getAddressList();
+			$.validator.messages.pattern = "Do not include ;&quot;&gt;'&lt;";
+			$('form').validate();
+			
 		});
 
+		//Getting the Address List Selector will automatically update the form
 function getAddressList() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -144,6 +147,7 @@ function getAddressList() {
 		}
 		
 		function sendFormData(){
+			if ($('form').valid){
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200){
@@ -156,6 +160,7 @@ function getAddressList() {
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhttp.send("Update="+update+"&AddressID="+$('select option:selected').val()+"&"+$("form").serialize());
 			
+		}
 		}
 
 		function deleteAddress(){

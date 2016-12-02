@@ -1,7 +1,6 @@
 <?php
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+
 if (! $_SESSION['loggedIn'] || empty($_SESSION['loggedIn'])) {
 	$_SESSION['loggedIn'] = false;
 	header('Location: Login.php');
