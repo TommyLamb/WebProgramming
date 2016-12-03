@@ -8,7 +8,7 @@
 		</div>
 
 		<div id="userbar">
-			<span><a href="http://www2.macs.hw.ac.uk:8080/til1/Year2Semester1/WebProgramming/CW1/Basket.jsp">Basket</a> | 
+			<span><a href="404">Basket</a> | 
 			<?php 
 			if ($_SESSION['loggedIn'] && !empty($_SESSION['uID'])){
 				echo '<a href="MyAccount.php">My Account</a></span>';
